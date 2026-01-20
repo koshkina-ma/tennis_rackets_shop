@@ -5,6 +5,12 @@ type PageProps = {
   params: Promise<{ id: string }> | { id: string };
 };
 
+// Pre-generate pages for first 3 rackets from mock
+export async function generateStaticParams() {
+  const ids = rackets.slice(0, 3).map((r) => ({ id: String(r.id) }));
+  return ids;
+}
+
 export default async function RacketPage({ params }: PageProps) {
   const resolvedParams = await params;
   const id = Number(resolvedParams.id);
@@ -37,9 +43,12 @@ export default async function RacketPage({ params }: PageProps) {
           </div>
           <div className="racket-info">
             <h1 className="racket-title">{racket.name}</h1>
-            <p className="racket-description">{racket.description}</p>
+
             <p className="racket-price">${racket.price}</p>
+
             <p className="racket-brand">{racket.brand?.name}</p>
+
+            <p className="racket-description">{racket.description}</p>
           </div>
         </div>
       </section>

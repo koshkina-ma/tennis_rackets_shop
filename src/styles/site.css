@@ -2,6 +2,9 @@
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, "Noto Sans", "Liberation Sans", sans-serif;
   color: #1f2937;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .site-header {
@@ -18,10 +21,11 @@
   justify-content: space-between;
 }
 
-.brand {
+.logo {
   font-weight: 600;
   letter-spacing: 1px;
   color: #374151;
+  text-decoration: none;
 }
 
 .nav {
@@ -44,6 +48,7 @@
   max-width: 1100px;
   margin: 40px auto;
   padding: 0 20px;
+  flex: 1;
 }
 
 .section {
@@ -55,10 +60,119 @@
   color: #111827;
 }
 
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.all-link {
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.all-link:hover {
+  text-decoration: underline;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+}
+.pagination-list {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.page-item {
+}
+.page-link {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #374151;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.page-link--active {
+  background: #eef2f6;
+  border-color: #e6e6e6;
+  font-weight: 600;
+}
+.page-link.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+}
+
+.rackets-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.filters {
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.filter-title {
+  color: #9ca3af;
+  font-size: 13px;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.filter-list {
+  margin-left: 0;
+  padding-left: 18px;
+}
+
+.filter-item {
+  padding: 6px 0;
+  color: #374151;
+  font-size: 14px;
+  border-bottom: none;
+  list-style: disc;
+  list-style-position: inside;
+}
+
+.filter-item:last-child {
+  border-bottom: none;
+}
+
+.rackets-list {
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .rackets-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    display: none;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .card {
@@ -93,6 +207,23 @@
 .footer-inner {
   max-width: 1100px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-logo {
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #374151;
+  margin-bottom: 12px;
+  text-decoration: none;
+  display: block;
+}
+
+.footer-copy {
+  margin-top: 0;
 }
 
 /* Racket detail page */
@@ -124,18 +255,21 @@
 }
 
 .racket-description {
-  color: #6b7280;
-  line-height: 1.5;
+  color: #4b5563;
+  line-height: 1.6;
 }
 
 .racket-price {
-  font-weight: 700;
-  margin-top: 12px;
+  font-weight: 800;
+  font-size: 22px;
+  color: #111827;
+  margin: 8px 0 4px 0;
 }
 
 .racket-brand {
-  color: #9ca3af;
-  margin-top: 24px;
+  color: #6b7280;
+  font-size: 14px;
+  margin: 0 0 12px 0;
 }
 
 /* Responsive: stack columns on small screens */

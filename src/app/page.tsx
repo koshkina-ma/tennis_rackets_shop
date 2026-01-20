@@ -17,10 +17,17 @@ const Page: FC = () => {
 
   return (
     <main className="main">
-      <section className="section">
-        <h2 className="section-title">Ракетки</h2>
+        <section className="section">
+          <div className="section-header">
+            <h2 className="section-title">Ракетки</h2>
+            <div>
+              <Link href="/rackets" className="all-link">
+                Все ↗
+              </Link>
+            </div>
+          </div>
 
-        <div className="grid">
+          <div className="grid">
           {topThree.map((r) => (
             <article key={r.id} className="card">
               <Link href={`/rackets/${r.id}`} className="card-link">
