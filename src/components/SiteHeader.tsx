@@ -11,7 +11,8 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   const isHome = pathname === "/";
-  const isRackets = pathname === "/rackets" || pathname.startsWith("/rackets/");
+  // mark Rackets active only on the listing page "/rackets"
+  const isRackets = pathname === "/rackets";
 
   return (
     <header className="site-header">

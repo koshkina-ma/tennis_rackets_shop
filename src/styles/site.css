@@ -95,3 +95,55 @@
   margin: 0 auto;
 }
 
+/* Racket detail page */
+.racket-detail .racket-detail-inner {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.racket-image-wrapper {
+  flex: 1;
+  max-width: 600px;
+}
+
+.racket-main-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.racket-info {
+  flex: 1;
+}
+
+.racket-title {
+  margin-top: 0;
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.racket-description {
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.racket-price {
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.racket-brand {
+  color: #9ca3af;
+  margin-top: 24px;
+}
+
+/* Responsive: stack columns on small screens */
+@media (max-width: 800px) {
+  .racket-detail .racket-detail-inner {
+    flex-direction: column;
+  }
+  .racket-image-wrapper {
+    max-width: 100%;
+  }
+}

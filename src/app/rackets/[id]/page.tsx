@@ -1,20 +1,48 @@
-'use client';
+import Image from "next/image";
+import { rackets } from "../../../../public/mock";
 
-import { FC } from "react";
-import { useParams } from "next/navigation";
-
-type Props = {
-  params: Promise<{ id: string }>;
+type PageProps = {
+  params: Promise<{ id: string }> | { id: string };
 };
 
-// const ProductPage: FC<Props> = async ({ params }) => {
-//   const { id } = await params;
-//   return <div>Product {id}</div>;
-// };
+export default async function RacketPage({ params }: PageProps) {
+  const resolvedParams = await params;
+  const id = Number(resolvedParams.id);
+  console.log("RacketPage request params:", { paramsId: resolvedParams.id, parsedId: id });
+  console.log("Available racket ids:", rackets.map((r) => r.id).slice(0, 50));
+  const racket = rackets.find((r) => r.id === id);
 
-const ProductPage: FC<Props> = () => {
-  const { id } = useParams();
-  return <div>Product {id}</div>;
-};
+  if (!racket) {
+    return (
+      <main className="main">
+        <section className="section">
+          <h2 className="section-title">Ракетка не найдена</h2>
+        </section>
+      </main>
+    );
+  }
 
-export default ProductPage;
+  return (
+    <main className="main">
+      <section className="section racket-detail">
+        <div className="racket-detail-inner">
+          <div className="racket-image-wrapper">
+            <Image
+              src={racket.imageUrl}
+              alt={racket.name}
+              width={600}
+              height={720}
+              className="racket-main-image"
+            />
+          </div>
+          <div className="racket-info">
+            <h1 className="racket-title">{racket.name}</h1>
+            <p className="racket-description">{racket.description}</p>
+            <p className="racket-price">${racket.price}</p>
+            <p className="racket-brand">{racket.brand?.name}</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
