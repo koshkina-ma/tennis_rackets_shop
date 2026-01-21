@@ -33,7 +33,7 @@ export default function RacketsPage({
             <div className="grid">
               {paged.map((r) => (
                 <article key={r.id} className="card">
-                  <Link href={`/rackets/${r.id}`} className="card-link">
+                  <Link href={`/racket/${r.id}`} className="card-link">
                     <Image
                       src={r.imageUrl}
                       alt={r.name}
