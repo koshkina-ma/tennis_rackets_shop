@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { rackets } from "../../public/mock";
+import { Carousel } from "../components/Carousel";
 
 type Racket = {
   id: number;
@@ -13,36 +13,19 @@ type Racket = {
 };
 
 const Page: FC = () => {
-  const topThree: Racket[] = rackets.slice(0, 3);
-
   return (
     <main className="main">
-        <section className="section">
-          <div className="section-header">
-            <h2 className="section-title">Ракетки</h2>
-            <div>
-              <Link href="/rackets" className="all-link">
-                Все ↗
-              </Link>
-            </div>
+      <section className="section">
+        <div className="section-header">
+          <h2 className="section-title">Ракетки</h2>
+          <div>
+            <Link href="/rackets" className="all-link">
+              Все ↗
+            </Link>
           </div>
-
-          <div className="grid">
-          {topThree.map((r) => (
-            <article key={r.id} className="card">
-              <Link href={`/rackets/${r.id}`} className="card-link">
-                <Image
-                  src={r.imageUrl}
-                  alt={r.name}
-                  width={500}
-                  height={360}
-                  className="card-image"
-                />
-              </Link>
-              <div className="card-title">{r.name}</div>
-            </article>
-          ))}
         </div>
+
+        <Carousel items={rackets} />
       </section>
     </main>
   );
