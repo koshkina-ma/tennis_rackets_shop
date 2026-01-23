@@ -7,9 +7,7 @@
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  /* Убираем min-height, если хотим, чтобы карточки были одной высоты в ряду, 
-     лучше задать высоту через flex-grow или фиксированно */
-  height: 100%; 
+  box-sizing: border-box;
 }
 
 .cardLink {
