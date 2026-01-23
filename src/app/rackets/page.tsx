@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Filters } from "../../components/Filters";
+import styles from "./rackets.module.css";
 import { rackets } from "../../../public/mock";
 
 type SearchParams = { page?: string | undefined };
@@ -22,14 +23,13 @@ export default function RacketsPage({
   return (
     <main className="main">
       <section className="section">
-        <div className="rackets-layout">
-          <aside className="sidebar" aria-label="Фильтры">
+        <div className={styles.racketsLayout}>
+          <aside className={styles.sidebar} aria-label="Фильтры">
             <Filters />
           </aside>
 
-          <div className="rackets-list">
+          <div className={styles.racketsList}>
             <h2 className="section-title">Ракетки</h2>
-
             <div className="grid">
               {paged.map((r) => (
                 <article key={r.id} className="card">
@@ -48,12 +48,12 @@ export default function RacketsPage({
             </div>
 
             {totalPages > 1 && (
-              <nav className="pagination" aria-label="Pagination">
-                <ul className="pagination-list">
-                  <li className="page-item">
+              <nav className={styles.pagination} aria-label="Pagination">
+                <ul className={styles.paginationList}>
+                  <li className={styles.pageItem}>
                     <Link
                       href={makePageLink(Math.max(1, page - 1))}
-                      className={`page-link ${page === 1 ? "disabled" : ""}`}
+                      className={`${styles.pageLink} ${page === 1 ? styles.pageLinkDisabled : ""}`}
                       aria-disabled={page === 1}
                     >
                       ← Prev
@@ -63,10 +63,10 @@ export default function RacketsPage({
                   {Array.from({ length: totalPages }).map((_, i) => {
                     const p = i + 1;
                     return (
-                      <li key={p} className="page-item">
+                      <li key={p} className={styles.pageItem}>
                         <Link
                           href={makePageLink(p)}
-                          className={`page-link ${p === page ? "page-link--active" : ""}`}
+                          className={`${styles.pageLink} ${p === page ? styles.pageLinkActive : ""}`}
                         >
                           {p}
                         </Link>
@@ -74,10 +74,10 @@ export default function RacketsPage({
                     );
                   })}
 
-                  <li className="page-item">
+                  <li className={styles.pageItem}>
                     <Link
                       href={makePageLink(Math.min(totalPages, page + 1))}
-                      className={`page-link ${page === totalPages ? "disabled" : ""}`}
+                      className={`${styles.pageLink} ${page === totalPages ? styles.pageLinkDisabled : ""}`}
                       aria-disabled={page === totalPages}
                     >
                       Next →

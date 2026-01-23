@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { rackets } from "../../../../public/mock";
+import RacketContainer from "../../../components/racket/RacketContainer";
 
 type PageProps = {
   params: Promise<{ id: string }> | { id: string };
@@ -16,40 +17,16 @@ export default async function RacketPage({ params }: PageProps) {
   const id = Number(resolvedParams.id);
   console.log("RacketPage request params:", { paramsId: resolvedParams.id, parsedId: id });
   console.log("Available racket ids:", rackets.map((r) => r.id).slice(0, 50));
-  const racket = rackets.find((r) => r.id === id);
-
-  if (!racket) {
-    return (
-      <main className="main">
-        <section className="section">
-          <h2 className="section-title">Ракетка не найдена</h2>
-        </section>
-      </main>
-    );
-  }
-
   return (
     <main className="main">
-      <section className="section racket-detail">
-        <div className="racket-detail-inner">
-          <div className="racket-image-wrapper">
-            <Image
-              src={racket.imageUrl}
-              alt={racket.name}
-              width={600}
-              height={720}
-              className="racket-main-image"
-            />
-          </div>
-          <div className="racket-info">
-            <h1 className="racket-title">{racket.name}</h1>
-
-            <p className="racket-price">${racket.price}</p>
-
-            <p className="racket-brand">{racket.brand?.name}</p>
-
-            <p className="racket-description">{racket.description}</p>
-          </div>
+      <section className="section">
+        {/* RacketContainer is a client component that picks and renders the racket */}
+        {/* eslint-disable-next-line @next/next/no-css-tags */}
+        {/* Render via container */}
+        <div>
+          {/* Pass id as string to client container */}
+          {/* @ts-ignore server -> client prop */}
+          <RacketContainer id={String(id)} />
         </div>
       </section>
     </main>

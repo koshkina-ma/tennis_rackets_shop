@@ -1,7 +1,6 @@
 import { FC } from "react";
 import "../styles/site.css";
-import { SiteFooter } from "../components/SiteFooter";
-import { SiteHeader } from "../components/SiteHeader";
+import Layout from "../components/Layout/Layout";
 
 const RootLayout: FC<
  Readonly<{
@@ -11,11 +10,7 @@ const RootLayout: FC<
   return (
     <html lang="en">
       <body>
-        <div className="site-root">
-          <SiteHeader />
-          {children}
-          <SiteFooter />
-        </div>
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
