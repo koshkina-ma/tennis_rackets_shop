@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import Image from "next/image";
 import styles from "./racket.module.css";
 
 export type IRacket = {
@@ -30,7 +31,13 @@ export const Racket: FC<Props> = ({ racket }) => {
           {model && <div>Model: {model}</div>}
         </div>
       </div>
-      <img className={styles.image} src={imageUrl} alt={name} />
+      <Image
+        className={styles.image}
+        src={imageUrl}
+        alt={name}
+        width={800}
+        height={800}
+      />
     </section>
   );
 };

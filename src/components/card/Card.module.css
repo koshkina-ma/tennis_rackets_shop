@@ -1,0 +1,40 @@
+/* Card.module.css */
+
+.card {
+  border: 1px solid #eef2f6;
+  border-radius: 8px;
+  padding: 12px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  /* Убираем min-height, если хотим, чтобы карточки были одной высоты в ряду, 
+     лучше задать высоту через flex-grow или фиксированно */
+  height: 100%; 
+}
+
+.cardLink {
+  display: block;
+  width: 100%;
+  /* Фиксируем высоту области картинки */
+  aspect-ratio: 3 / 4;
+  position: relative; /* Нужно для Next.js Image с fill */
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+}
+
+.cardTitle {
+  margin-top: auto; /* Прижимает текст к низу, если карточка вытянулась */
+  color: #6b7280;
+  font-size: 14px;
+  text-align: center;
+  min-height: 40px; /* Чтобы длинные названия не ломали сетку */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

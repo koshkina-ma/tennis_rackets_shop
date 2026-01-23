@@ -1,7 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
-import { Filters } from "../../components/Filters";
+import { Filters } from "../../components/filters/Filters";
 import styles from "./rackets.module.css";
+import pageStyles from "../../components/layout/Page.module.css";
+import Card from "../../components/card/Card";
 import { rackets } from "../../../public/mock";
 
 type SearchParams = { page?: string | undefined };
@@ -21,29 +22,18 @@ export default function RacketsPage({
   const makePageLink = (p: number) => (p === 1 ? "/rackets" : `/rackets?page=${p}`);
 
   return (
-    <main className="main">
-      <section className="section">
+    <main className={pageStyles.main}>
+      <section className={pageStyles.section}>
         <div className={styles.racketsLayout}>
           <aside className={styles.sidebar} aria-label="Фильтры">
             <Filters />
           </aside>
 
           <div className={styles.racketsList}>
-            <h2 className="section-title">Ракетки</h2>
-            <div className="grid">
+            <h2 className={pageStyles.sectionTitle}>Ракетки</h2>
+            <div className={styles.grid}>
               {paged.map((r) => (
-                <article key={r.id} className="card">
-                  <Link href={`/racket/${r.id}`} className="card-link">
-                    <Image
-                      src={r.imageUrl}
-                      alt={r.name}
-                      width={500}
-                      height={360}
-                      className="card-image"
-                    />
-                  </Link>
-                  <div className="card-title">{r.name}</div>
-                </article>
+                <Card key={r.id} id={r.id} name={r.name} imageUrl={r.imageUrl} />
               ))}
             </div>
 

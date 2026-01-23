@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { rackets } from "../../../../public/mock";
-import RacketContainer from "../../../components/racket/RacketContainer";
+import Racket from "../../../components/racket/Racket";
+import pageStyles from "../../../components/layout/Page.module.css";
 
 type PageProps = {
   params: Promise<{ id: string }> | { id: string };
@@ -15,19 +15,22 @@ export async function generateStaticParams() {
 export default async function RacketPage({ params }: PageProps) {
   const resolvedParams = await params;
   const id = Number(resolvedParams.id);
-  console.log("RacketPage request params:", { paramsId: resolvedParams.id, parsedId: id });
-  console.log("Available racket ids:", rackets.map((r) => r.id).slice(0, 50));
+  const racket = rackets.find((r) => Number(r.id) === id);
+
+  if (!racket) {
+    return (
+      <main className={pageStyles.main}>
+        <section className={pageStyles.section}>
+          <h2 className={pageStyles.sectionTitle}>Ракетка не найдена</h2>
+        </section>
+      </main>
+    );
+  }
+
   return (
-    <main className="main">
-      <section className="section">
-        {/* RacketContainer is a client component that picks and renders the racket */}
-        {/* eslint-disable-next-line @next/next/no-css-tags */}
-        {/* Render via container */}
-        <div>
-          {/* Pass id as string to client container */}
-          {/* @ts-ignore server -> client prop */}
-          <RacketContainer id={String(id)} />
-        </div>
+    <main className={pageStyles.main}>
+      <section className={pageStyles.section}>
+        <Racket racket={racket} />
       </section>
     </main>
   );

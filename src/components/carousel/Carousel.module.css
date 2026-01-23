@@ -1,0 +1,40 @@
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.carouselTrack {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+}
+.carouselItem {
+  scroll-snap-align: start;
+  min-width: 320px;
+  max-width: 420px;
+}
+.carouselButton {
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #374151;
+}
+.carouselButtonLeft {}
+.carouselButtonRight {}
+
+@media (max-width: 900px) {
+  .carouselItem {
+    min-width: 260px;
+  }
+}
+

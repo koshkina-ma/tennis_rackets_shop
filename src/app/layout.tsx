@@ -1,6 +1,5 @@
 import { FC } from "react";
-import "../styles/site.css";
-import Layout from "../components/Layout/Layout";
+import Layout from "../components/layout/Layout";
 
 const RootLayout: FC<
  Readonly<{

@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useRef } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import styles from "./Carousel.module.css";
+import cardStyles from "../card/Card.module.css";
+import Card from "../card/Card";
 
 type Racket = {
   id: number;
@@ -21,34 +22,25 @@ export function Carousel({ items }: { items: Racket[] }) {
   };
 
   return (
-    <div className="carousel">
+    <div className={styles.carousel}>
       <button
-        className="carousel-button carousel-button--left"
+        className={`${styles.carouselButton} ${styles.carouselButtonLeft}`}
         aria-label="Scroll left"
         onClick={() => scrollByWidth("left")}
       >
         ‹
       </button>
 
-      <div className="carousel-track" ref={trackRef}>
+      <div className={styles.carouselTrack} ref={trackRef}>
         {items.map((r) => (
-          <div key={r.id} className="card carousel-item">
-            <Link href={`/racket/${r.id}`} className="card-link">
-              <Image
-                src={r.imageUrl}
-                alt={r.name}
-                width={420}
-                height={420}
-                className="card-image"
-              />
-            </Link>
-            <div className="card-title">{r.name}</div>
+          <div key={r.id} className={styles.carouselItem}>
+            <Card id={r.id} name={r.name} imageUrl={r.imageUrl} className={cardStyles.card} />
           </div>
         ))}
       </div>
 
       <button
-        className="carousel-button carousel-button--right"
+        className={`${styles.carouselButton} ${styles.carouselButtonRight}`}
         aria-label="Scroll right"
         onClick={() => scrollByWidth("right")}
       >
@@ -57,4 +49,6 @@ export function Carousel({ items }: { items: Racket[] }) {
     </div>
   );
 }
+
+export default Carousel;
 

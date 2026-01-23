@@ -1,0 +1,28 @@
+.filters {
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.filterTitle {
+  color: #9ca3af;
+  font-size: 13px;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.filterList {
+  margin-left: 0;
+  padding-left: 18px;
+}
+
+.filterItem {
+  padding: 6px 0;
+  color: #374151;
+  font-size: 14px;
+  border-bottom: none;
+  list-style: disc;
+  list-style-position: inside;
+}
+
