@@ -14,17 +14,17 @@ type Props = {
 
 const Card: FC<Props> = ({ id, name, imageUrl, className = "" }) => {
   return (
-    <article className={`${styles.card} ${className}`.trim()}>
-      <Link href={`/racket/${id}`} className={styles.cardLink}>
+    <Link href={`/racket/${id}`} className={`${styles.card} ${className}`.trim()}>
+      <div className={styles.cardMedia}>
         <Image
         src={imageUrl}
         alt={name}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className={styles.cardImage} />
-      </Link>
+      </div>
       <div className={styles.cardTitle}>{name}</div>
-    </article>
+    </Link>
   );
 };
 
