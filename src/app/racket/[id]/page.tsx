@@ -1,5 +1,5 @@
 import { rackets } from "../../../../public/mock";
-import Racket from "../../../components/racket/racket";
+import RacketDetails from "../../../components/racket/racket-details";
 import pageStyles from "../../../components/layout/page.module.css";
 
 type PageProps = {
@@ -30,7 +30,7 @@ export default async function RacketPage({ params }: PageProps) {
   return (
     <main className={pageStyles.main}>
       <section className={pageStyles.section}>
-        <Racket racket={racket} />
+        <RacketDetails racket={racket} />
       </section>
     </main>
   );

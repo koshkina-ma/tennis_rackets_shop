@@ -1,22 +1,13 @@
 import type { FC } from "react";
 import Image from "next/image";
 import styles from "./racket.module.css";
-
-export type IRacket = {
-  id: number;
-  name: string;
-  imageUrl: string;
-  price: number;
-  model?: string;
-  description?: string;
-  brand?: { id?: number; name: string };
-};
+import type { RacketType } from "../../types/racket";
 
 type Props = {
-  racket: IRacket;
+  racket: RacketType;
 };
 
-export const Racket: FC<Props> = ({ racket }) => {
+export const RacketDetails: FC<Props> = ({ racket }) => {
   const { name, imageUrl, description, brand, price, model } = racket;
 
   return (
@@ -31,16 +22,10 @@ export const Racket: FC<Props> = ({ racket }) => {
           {model && <div>Model: {model}</div>}
         </div>
       </div>
-      <Image
-        className={styles.image}
-        src={imageUrl}
-        alt={name}
-        width={800}
-        height={800}
-      />
+      <Image className={styles.image} src={imageUrl} alt={name} width={800} height={800} />
     </section>
   );
 };
 
-export default Racket;
+export default RacketDetails;
 

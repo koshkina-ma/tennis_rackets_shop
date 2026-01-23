@@ -4,14 +4,11 @@ import React, { useRef } from "react";
 import styles from "./carousel.module.css";
 import cardStyles from "../card/card.module.css";
 import Card from "../card/card";
+import type { RacketType } from "../../types/racket";
 
-type Racket = {
-  id: number;
-  name: string;
-  imageUrl: string;
-};
+type CarouselItem = Pick<RacketType, "id" | "name" | "imageUrl">;
 
-export function Carousel({ items }: { items: Racket[] }) {
+export function Carousel({ items }: { items: CarouselItem[] }) {
   const trackRef = useRef<HTMLDivElement | null>(null);
 
   const scrollByWidth = (dir: "left" | "right") => {
