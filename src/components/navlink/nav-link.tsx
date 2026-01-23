@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import styles from "./NavLink.module.css";
+import styles from "./nav-link.module.css";
 
 type Props = {
   href: string;

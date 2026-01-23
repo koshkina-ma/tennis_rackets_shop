@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { SiteHeader } from "../header/SiteHeader";
-import { SiteFooter } from "../footer/SiteFooter";
-import styles from "./Layout.module.css";
+import { SiteHeader } from "../header/site-header";
+import { SiteFooter } from "../footer/site-footer";
+import styles from "./layout.module.css";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

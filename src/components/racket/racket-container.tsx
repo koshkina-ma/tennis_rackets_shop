@@ -1,6 +1,6 @@
 import { rackets } from "../../../public/mock";
-import Racket, { IRacket } from "./Racket";
-import pageStyles from "../layout/Page.module.css";
+import Racket, { IRacket } from "./racket";
+import pageStyles from "../layout/page.module.css";
 
 type Props = {
   id: string;

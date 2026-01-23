@@ -1,19 +1,22 @@
 import Link from "next/link";
-import { Filters } from "../../components/filters/Filters";
+import { Filters } from "../../components/filters/filters";
 import styles from "./rackets.module.css";
-import pageStyles from "../../components/layout/Page.module.css";
-import Card from "../../components/card/Card";
+import pageStyles from "../../components/layout/page.module.css";
+import Card from "../../components/card/card";
 import { rackets } from "../../../public/mock";
 
 type SearchParams = { page?: string | undefined };
 
-export default function RacketsPage({
+type PageProps = {
+  searchParams?: Promise<SearchParams> | SearchParams;
+};
+
+export default async function RacketsPage({
   searchParams,
-}: {
-  searchParams?: SearchParams;
-}) {
+}: PageProps) {
+  const resolvedSearchParams = await searchParams;
   const pageSize = 6;
-  const page = Math.max(1, Number(searchParams?.page ?? 1));
+  const page = Math.max(1, Number(resolvedSearchParams?.page ?? 1));
   const total = rackets.length;
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
   const start = (page - 1) * pageSize;

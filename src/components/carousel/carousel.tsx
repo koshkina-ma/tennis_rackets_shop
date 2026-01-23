@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useRef } from "react";
-import styles from "./Carousel.module.css";
-import cardStyles from "../card/Card.module.css";
-import Card from "../card/Card";
+import styles from "./carousel.module.css";
+import cardStyles from "../card/card.module.css";
+import Card from "../card/card";
 
 type Racket = {
   id: number;

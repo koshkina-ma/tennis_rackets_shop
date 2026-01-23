@@ -1,6 +1,6 @@
 import { rackets } from "../../../../public/mock";
-import Racket from "../../../components/racket/Racket";
-import pageStyles from "../../../components/layout/Page.module.css";
+import Racket from "../../../components/racket/racket";
+import pageStyles from "../../../components/layout/page.module.css";
 
 type PageProps = {
   params: Promise<{ id: string }> | { id: string };

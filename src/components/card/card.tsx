@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import styles from "./Card.module.css";
+import styles from "./card.module.css";
 import type { FC } from "react";
 
 type Props = {

@@ -1,8 +1,8 @@
  "use client";
 
 import Link from "next/link";
-import styles from "./SiteHeader.module.css";
-import NavLink from "../navlink/NavLink";
+import styles from "./site-header.module.css";
+import NavLink from "../navlink/nav-link";
 
 export function SiteHeader() {
   return (

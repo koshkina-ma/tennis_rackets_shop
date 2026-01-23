@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styles from "./Filters.module.css";
+import styles from "./filters.module.css";
 
 export function Filters() {
   return (
