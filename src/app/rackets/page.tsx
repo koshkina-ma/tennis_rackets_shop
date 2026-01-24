@@ -3,7 +3,7 @@ import { Filters } from "../../components/filters/filters";
 import styles from "./rackets.module.css";
 import pageStyles from "../../components/layout/page.module.css";
 import Card from "../../components/card/card";
-import { rackets } from "../../../public/mock";
+import { getRackets } from "@/services/get-rackets";
 
 type SearchParams = { page?: string | undefined };
 
@@ -14,8 +14,19 @@ type PageProps = {
 export default async function RacketsPage({
   searchParams,
 }: PageProps) {
+  const { data, isError } = await getRackets();
+  if (isError) {
+    return (
+      <main className={pageStyles.main}>
+        <section className={pageStyles.section}>
+          <p>Упс, сервер ракеток прилег отдохнуть...</p>
+        </section>
+      </main>
+    );
+  }
+  const rackets = data;
   const resolvedSearchParams = await searchParams;
-  const pageSize = 6;
+  const pageSize = 9;
   const page = Math.max(1, Number(resolvedSearchParams?.page ?? 1));
   const total = rackets.length;
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
