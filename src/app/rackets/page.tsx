@@ -26,7 +26,7 @@ export default async function RacketsPage({
   }
   const rackets = data;
   const resolvedSearchParams = await searchParams;
-  const pageSize = 9;
+  const pageSize = 12; //делится и на 3 и на 2
   const page = Math.max(1, Number(resolvedSearchParams?.page ?? 1));
   const total = rackets.length;
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
