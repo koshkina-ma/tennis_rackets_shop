@@ -4,6 +4,7 @@ import styles from "./rackets.module.css";
 import pageStyles from "../../components/layout/page.module.css";
 import Card from "../../components/card/card";
 import { getRackets } from "@/services/get-rackets";
+import { getTop10 } from "@/services/get-top10";
 
 type SearchParams = { page?: string | undefined };
 
@@ -14,7 +15,15 @@ type PageProps = {
 export default async function RacketsPage({
   searchParams,
 }: PageProps) {
-  const { data, isError } = await getRackets();
+  const racketsPromise = getRackets();
+  const top10Promise = getTop10();
+
+  const [racketsData, top10Data] = await Promise.all([
+    racketsPromise,
+    top10Promise
+  ]);
+
+
   if (isError) {
     return (
       <main className={pageStyles.main}>
