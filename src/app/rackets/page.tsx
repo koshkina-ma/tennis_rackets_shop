@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Filters } from "../../components/filters/filters";
+import { Filters } from "@/components/filters/filters";
 import styles from "./rackets.module.css";
-import pageStyles from "../../components/layout/page.module.css";
-import Card from "../../components/card/card";
+import pageStyles from "@/components/layout/page.module.css";
+import Card from "@/components/card/card";
 import { getRackets } from "@/services/get-rackets";
 import { getTop10 } from "@/services/get-top10";
 
@@ -13,7 +13,7 @@ type PageProps = {
 };
 
 export default async function RacketsPage({
-  searchParams,
+  searchParams, //TODO взять пагинацию с сервера
 }: PageProps) {
   const racketsPromise = getRackets();
   const top10Promise = getTop10();
@@ -23,6 +23,7 @@ export default async function RacketsPage({
     top10Promise
   ]);
 
+  const { isError, data } = racketsData;
 
   if (isError) {
     return (

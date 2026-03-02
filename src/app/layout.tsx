@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Layout from "../components/layout/layout";
+import Layout from "@/components/layout/layout";
 
 const RootLayout: FC<
  Readonly<{
