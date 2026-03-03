@@ -1,3 +1,4 @@
+import { BASE_API_URL } from "@/constants/api";
 import { RacketType } from "@/types/racket";
 import { ServerResponse } from "@/types/api";
 
@@ -15,7 +16,7 @@ export const getRacketById = async (
 
   try {
     const response = await fetch(
-      `http://localhost:4000/api/product/${id}`,
+      `${BASE_API_URL}/product/${id}`,
       { cache: "no-store" },
     );
 

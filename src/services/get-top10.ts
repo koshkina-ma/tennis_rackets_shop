@@ -1,3 +1,4 @@
+import { BASE_API_URL } from "@/constants/api";
 import { RacketType } from "@/types/racket";
 import { ServerResponse } from "@/types/api";
 
@@ -8,7 +9,7 @@ export const getTop10 = async (): Promise<ServerResponse<RacketType[]>> => {
   };
 
   try {
-    const response = await fetch("http://localhost:4000/api/top-10", {
+    const response = await fetch(`${BASE_API_URL}/top-10`, {
       cache: "no-store",
     });
 

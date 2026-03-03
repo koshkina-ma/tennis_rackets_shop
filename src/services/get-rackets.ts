@@ -1,3 +1,4 @@
+import { BASE_API_URL } from "@/constants/api";
 import { RacketType } from "@/types/racket";
 import { ServerResponse } from "@/types/api";
 
@@ -11,10 +12,10 @@ export const getRackets = async (): Promise<ServerResponse<RacketType[]>> => {
   };
 
   const page = 1;
-  const limit = 20;
+  const limit = 20;//TODO вынести в константы, как буду настраивать пагинацию
 
   try {
-    const response = await fetch(`http://localhost:4000/api/products?page=${page}&limit=${limit}`, {
+    const response = await fetch(`${BASE_API_URL}/products?page=${page}&limit=${limit}`, {
       cache: "no-store",
     });
 
