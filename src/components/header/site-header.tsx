@@ -19,6 +19,9 @@ export function SiteHeader() {
           <NavLink href="/rackets" className={styles.navLink} activeClassName={styles.navLinkActive} exact>
             Ракетки
           </NavLink>
+          <NavLink href="/rackets/top-10" className={styles.navLink} activeClassName={styles.navLinkActive}>
+            Топ-10
+          </NavLink>
         </nav>
       </div>
     </header>
