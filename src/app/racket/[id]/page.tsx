@@ -22,14 +22,14 @@ export default async function RacketPage({ params }: PageProps) {
     );
   }
 
-  if (!isError && !data) {
+  if (!data) {
     notFound();
   }
 
   return (
     <main className={pageStyles.main}>
       <section className={pageStyles.section}>
-        <RacketContainer id={resolvedParams.id} />
+        <RacketContainer racket={data} />
       </section>
     </main>
   );

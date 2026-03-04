@@ -1,29 +1,11 @@
-import Link from "next/link";
 import { Filters } from "@/components/filters/filters";
 import styles from "./rackets.module.css";
 import pageStyles from "@/components/layout/page.module.css";
 import Card from "@/components/card/card";
 import { getRackets } from "@/services/get-rackets";
-import { getTop10 } from "@/services/get-top10";
 
-type SearchParams = { page?: string | undefined };
-
-type PageProps = {
-  searchParams?: Promise<SearchParams> | SearchParams;
-};
-
-export default async function RacketsPage({
-  searchParams, //TODO взять пагинацию с сервера
-}: PageProps) {
-  const racketsPromise = getRackets();
-  const top10Promise = getTop10();
-
-  const [racketsData, top10Data] = await Promise.all([
-    racketsPromise,
-    top10Promise
-  ]);
-
-  const { isError, data } = racketsData;
+export default async function RacketsPage() {
+  const { isError, data } = await getRackets();
 
   if (isError) {
     return (
@@ -34,16 +16,6 @@ export default async function RacketsPage({
       </main>
     );
   }
-  const rackets = data;
-  const resolvedSearchParams = await searchParams;
-  const pageSize = 12; //делится и на 3 и на 2
-  const page = Math.max(1, Number(resolvedSearchParams?.page ?? 1));
-  const total = rackets.length;
-  const totalPages = Math.max(1, Math.ceil(total / pageSize));
-  const start = (page - 1) * pageSize;
-  const paged = rackets.slice(start, start + pageSize);
-
-  const makePageLink = (p: number) => (p === 1 ? "/rackets" : `/rackets?page=${p}`);
 
   return (
     <main className={pageStyles.main}>
@@ -56,50 +28,10 @@ export default async function RacketsPage({
           <div className={styles.racketsList}>
             <h2 className={pageStyles.sectionTitle}>Ракетки</h2>
             <div className={styles.grid}>
-              {paged.map((r) => (
+              {data.map((r) => (
                 <Card key={r.id} id={r.id} name={r.name} imageUrl={r.imageUrl} />
               ))}
             </div>
-
-            {totalPages > 1 && (
-              <nav className={styles.pagination} aria-label="Pagination">
-                <ul className={styles.paginationList}>
-                  <li className={styles.pageItem}>
-                    <Link
-                      href={makePageLink(Math.max(1, page - 1))}
-                      className={`${styles.pageLink} ${page === 1 ? styles.pageLinkDisabled : ""}`}
-                      aria-disabled={page === 1}
-                    >
-                      ← Prev
-                    </Link>
-                  </li>
-
-                  {Array.from({ length: totalPages }).map((_, i) => {
-                    const p = i + 1;
-                    return (
-                      <li key={p} className={styles.pageItem}>
-                        <Link
-                          href={makePageLink(p)}
-                          className={`${styles.pageLink} ${p === page ? styles.pageLinkActive : ""}`}
-                        >
-                          {p}
-                        </Link>
-                      </li>
-                    );
-                  })}
-
-                  <li className={styles.pageItem}>
-                    <Link
-                      href={makePageLink(Math.min(totalPages, page + 1))}
-                      className={`${styles.pageLink} ${page === totalPages ? styles.pageLinkDisabled : ""}`}
-                      aria-disabled={page === totalPages}
-                    >
-                      Next →
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-            )}
           </div>
         </div>
       </section>

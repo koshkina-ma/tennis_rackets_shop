@@ -21,7 +21,6 @@ export const getRacketById = async (
     );
 
     if (response.status === 404) {
-      // сущность не найдена — не считаем это «ошибкой сервера»
       return { isError: false, data: null };
     }
 
@@ -29,8 +28,11 @@ export const getRacketById = async (
       return errorResponse;
     }
 
-    const data: RacketType = await response.json();
-    return { isError: false, data };
+    const json: { product?: RacketType } = await response.json();
+    if (!json.product) {
+      return { isError: false, data: null };
+    }
+    return { isError: false, data: json.product };
   } catch {
     return errorResponse;
   }
