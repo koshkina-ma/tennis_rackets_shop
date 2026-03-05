@@ -4,7 +4,7 @@ import pageStyles from "@/components/layout/page.module.css";
 import { getTop10 } from "@/services/get-top10";
 import homeStyles from "./page.module.css";
 
-export async function Top10CarouselSection() {
+export async function Top10Section() {
   const top10Data = await getTop10();
   const top10 = top10Data.isError ? [] : (top10Data.data ?? []);
 

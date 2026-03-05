@@ -4,7 +4,7 @@ import pageStyles from "@/components/layout/page.module.css";
 import { getRackets } from "@/services/get-rackets";
 import homeStyles from "./page.module.css";
 
-export async function RacketsCarouselSection() {
+export async function RacketsSection() {
   const racketsData = await getRackets();
   const rackets = racketsData.isError ? [] : (racketsData.data ?? []).slice(0, 10);
 

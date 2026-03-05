@@ -1,20 +1,18 @@
 import { Suspense } from "react";
+import { SectionSkeleton } from "@/components/section-skeleton/section-skeleton";
 import pageStyles from "@/components/layout/page.module.css";
-import { RacketsCarouselSection } from "./rackets-carousel-section";
-import { Top10CarouselSection } from "./top10-carousel-section";
+import { RacketsSection } from "./rackets-section";
+import { Top10Section } from "./top10-section";
 
 export default function Page() {
   return (
     <main className={pageStyles.main}>
-
-      <Suspense fallback={null}>
-        <RacketsCarouselSection />
+      <Suspense fallback={<SectionSkeleton />}>
+        <RacketsSection />
       </Suspense>
-
-      <Suspense fallback={null}>
-        <Top10CarouselSection />
+      <Suspense fallback={<SectionSkeleton />}>
+        <Top10Section />
       </Suspense>
-      
     </main>
   );
 }
