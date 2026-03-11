@@ -1,5 +1,11 @@
 import { FC } from "react";
 import Layout from "@/components/layout/layout";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tennis Rackets Shop",
+  description: "based on Next.js",
+};
 
 const RootLayout: FC<
  Readonly<{

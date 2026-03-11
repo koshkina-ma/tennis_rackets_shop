@@ -3,6 +3,12 @@ import RacketsGrid from "@/components/rackets-grid/rackets-grid";
 import pageStyles from "@/components/layout/page.module.css";
 import { getRackets } from "@/services/get-rackets";
 import styles from "./rackets.module.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Rackets | Tennis Rackets Shop",
+  description: "Rackets page",
+};
 
 export default async function RacketsPage() {
   const { isError, data } = await getRackets();
