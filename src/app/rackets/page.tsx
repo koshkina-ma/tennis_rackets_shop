@@ -1,8 +1,8 @@
 import { Filters } from "@/components/filters/filters";
-import styles from "./rackets.module.css";
+import RacketsGrid from "@/components/rackets-grid/rackets-grid";
 import pageStyles from "@/components/layout/page.module.css";
-import Card from "@/components/card/card";
 import { getRackets } from "@/services/get-rackets";
+import styles from "./rackets.module.css";
 
 export default async function RacketsPage() {
   const { isError, data } = await getRackets();
@@ -26,12 +26,7 @@ export default async function RacketsPage() {
           </aside>
 
           <div className={styles.racketsList}>
-            <h2 className={pageStyles.sectionTitle}>Ракетки</h2>
-            <div className={styles.grid}>
-              {data.map((r) => (
-                <Card key={r.id} id={r.id} name={r.name} imageUrl={r.imageUrl} />
-              ))}
-            </div>
+            <RacketsGrid rackets={data} title="Ракетки" />
           </div>
         </div>
       </section>
