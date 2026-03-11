@@ -1,34 +1,18 @@
-import { FC } from "react";
-import Link from "next/link";
-import { rackets } from "../../public/mock";
-import { Carousel } from "../components/Carousel";
+import { Suspense } from "react";
+import { SectionSkeleton } from "@/components/section-skeleton/section-skeleton";
+import pageStyles from "@/components/layout/page.module.css";
+import { RacketsSection } from "./rackets-section";
+import { Top10Section } from "./top10-section";
 
-type Racket = {
-  id: number;
-  name: string;
-  imageUrl: string;
-  price: number;
-  model?: string;
-  brand?: { name: string };
-};
-
-const Page: FC = () => {
+export default function Page() {
   return (
-    <main className="main">
-      <section className="section">
-        <div className="section-header">
-          <h2 className="section-title">Ракетки</h2>
-          <div>
-            <Link href="/rackets" className="all-link">
-              Все ↗
-            </Link>
-          </div>
-        </div>
-
-        <Carousel items={rackets} />
-      </section>
+    <main className={pageStyles.main}>
+      <Suspense fallback={<SectionSkeleton />}>
+        <RacketsSection />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <Top10Section />
+      </Suspense>
     </main>
   );
-};
-
-export default Page;
+}

@@ -1,0 +1,133 @@
+.section {
+  margin-bottom: 40px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.titleLine {
+  width: 120px;
+  height: 24px;
+  border-radius: 4px;
+  background-color: #e5e7eb;
+  overflow: hidden;
+  position: relative;
+}
+
+.titleLine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerMove 1.5s linear infinite;
+}
+
+.linkLine {
+  width: 48px;
+  height: 14px;
+  border-radius: 4px;
+  background-color: #e5e7eb;
+  overflow: hidden;
+  position: relative;
+}
+
+.linkLine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerMove 1.5s linear infinite;
+}
+
+.track {
+  display: flex;
+  gap: 24px;
+  overflow: hidden;
+}
+
+.card {
+  flex-shrink: 0;
+  min-width: 320px;
+  max-width: 420px;
+  border-radius: 8px;
+  padding: 12px;
+  background: #f9fafb;
+  border: 1px solid #f3f4f6;
+}
+
+.cardMedia {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 4px;
+  background-color: #e5e7eb;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.cardMedia::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerMove 1.5s linear infinite;
+}
+
+.cardTitle {
+  height: 40px;
+  border-radius: 4px;
+  background-color: #e5e7eb;
+  overflow: hidden;
+  position: relative;
+}
+
+.cardTitle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerMove 1.5s linear infinite 0.2s;
+}
+
+@keyframes shimmerMove {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    min-width: 260px;
+  }
+}

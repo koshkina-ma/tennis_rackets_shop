@@ -1,0 +1,25 @@
+import RacketsGrid from "@/components/rackets-grid/rackets-grid";
+import pageStyles from "@/components/layout/page.module.css";
+import { getTop10 } from "@/services/get-top10";
+
+export default async function Top10Page() {
+  const { isError, data } = await getTop10();
+
+  if (isError) {
+    return (
+      <main className={pageStyles.main}>
+        <section className={pageStyles.section}>
+          <p>Упс, сервер ракеток прилег отдохнуть...</p>
+        </section>
+      </main>
+    );
+  }
+
+  return (
+    <main className={pageStyles.main}>
+      <section className={pageStyles.section}>
+        <RacketsGrid rackets={data} title="Топ-10" />
+      </section>
+    </main>
+  );
+}

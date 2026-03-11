@@ -1,0 +1,28 @@
+.siteFooter {
+  border-top: 1px solid #eef2f6;
+  padding: 32px 20px;
+  color: #9ca3af;
+}
+
+.footerInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.footerLogo {
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #374151;
+  margin-bottom: 12px;
+  text-decoration: none;
+  display: block;
+}
+
+.footerCopy {
+  margin-top: 0;
+}
+
