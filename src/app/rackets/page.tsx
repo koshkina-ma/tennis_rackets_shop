@@ -14,13 +14,7 @@ export default async function RacketsPage() {
   const { isError, data } = await getRackets();
 
   if (isError) {
-    return (
-      <main className={pageStyles.main}>
-        <section className={pageStyles.section}>
-          <p>Упс, сервер ракеток прилег отдохнуть...</p>
-        </section>
-      </main>
-    );
+    throw new Error("Ошибка загрузки ракеток");
   }
 
   return (
