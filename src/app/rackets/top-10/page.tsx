@@ -12,13 +12,7 @@ export default async function Top10Page() {
   const { isError, data } = await getTop10();
 
   if (isError) {
-    return (
-      <main className={pageStyles.main}>
-        <section className={pageStyles.section}>
-          <p>Упс, сервер ракеток прилег отдохнуть...</p>
-        </section>
-      </main>
-    );
+    throw new Error("Ошибка загрузки топ-10");
   }
 
   return (

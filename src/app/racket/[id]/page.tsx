@@ -27,13 +27,7 @@ export default async function RacketPage({ params }: PageProps) {
   const { isError, data } = await getRacketById({ id: resolvedParams.id });
 
   if (isError) {
-    return (
-      <main className={pageStyles.main}>
-        <section className={pageStyles.section}>
-          <p>Упс, сервер ракеток прилег отдохнуть...</p>
-        </section>
-      </main>
-    );
+    throw new Error("Ошибка загрузки ракетки");
   }
 
   if (!data) {

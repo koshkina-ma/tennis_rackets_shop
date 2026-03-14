@@ -6,7 +6,6 @@ import homeStyles from "./page.module.css";
 
 export async function Top10Section() {
   const top10Data = await getTop10();
-  const top10 = top10Data.isError ? [] : (top10Data.data ?? []);
 
   return (
     <section className={pageStyles.section}>
@@ -18,7 +17,11 @@ export async function Top10Section() {
           </Link>
         </div>
       </div>
-      <Carousel items={top10} />
+      {top10Data.isError ? (
+        <p>Не удалось загрузить блок с топ-10.</p>
+      ) : (
+        <Carousel items={top10Data.data ?? []} />
+      )}
     </section>
   );
 }

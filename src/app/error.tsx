@@ -2,7 +2,8 @@
 
 import pageStyles from "@/components/layout/page.module.css";
 
-export default function RacketsError({
+export default function AppError({
+  error,
   reset,
 }: {
   error: Error & { digest?: string };
@@ -11,7 +12,7 @@ export default function RacketsError({
   return (
     <main className={pageStyles.main}>
       <section className={pageStyles.section}>
-        <p>Упс, сервер ракеток прилег отдохнуть...</p>
+        <p>{error.message || "Упс, что-то пошло не так..."}</p>
         <button type="button" onClick={() => reset()}>
           Попробовать снова
         </button>
