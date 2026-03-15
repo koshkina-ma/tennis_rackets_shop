@@ -6,7 +6,6 @@ import homeStyles from "./page.module.css";
 
 export async function RacketsSection() {
   const racketsData = await getRackets();
-  const rackets = racketsData.isError ? [] : (racketsData.data ?? []).slice(0, 10);
 
   return (
     <section className={pageStyles.section}>
@@ -18,7 +17,11 @@ export async function RacketsSection() {
           </Link>
         </div>
       </div>
-      <Carousel items={rackets} />
+      {racketsData.isError ? (
+        <p>Не удалось загрузить блок с ракетками.</p>
+      ) : (
+        <Carousel items={(racketsData.data ?? []).slice(0, 10)} />
+      )}
     </section>
   );
 }
