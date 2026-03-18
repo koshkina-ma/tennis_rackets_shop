@@ -10,7 +10,7 @@ export const getTop10 = async (): Promise<ServerResponse<RacketType[]>> => {
 
   try {
     const response = await fetch(`${BASE_API_URL}/top-10`, {
-      cache: "no-store",
+      next: { tags: ["top-10"] },
     });
 
     if (!response.ok) {
