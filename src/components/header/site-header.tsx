@@ -3,8 +3,16 @@
 import Link from "next/link";
 import styles from "./site-header.module.css";
 import NavLink from "../navlink/nav-link";
+import { use } from "react";
+import { UserContext } from "@/app/providers/user-provider";
 
 export function SiteHeader() {
+
+  const { user } = use(UserContext);
+
+  console.log("header user");
+  console.log(user);
+
   return (
     <header className={styles.siteHeader}>
       <div className={styles.headerInner}>
@@ -24,6 +32,7 @@ export function SiteHeader() {
           </NavLink>
         </nav>
       </div>
+      <div>{user?.name}</div>
     </header>
   );
 }

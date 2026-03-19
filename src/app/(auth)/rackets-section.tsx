@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Carousel } from "@/components/carousel/carousel";
 import pageStyles from "@/components/layout/page.module.css";
 import { getRackets } from "@/services/get-rackets";
-import homeStyles from "./page.module.css";
+import homeStyles from "../page.module.css";
 
 export async function RacketsSection() {
   const racketsData = await getRackets();
