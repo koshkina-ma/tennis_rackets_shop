@@ -31,8 +31,9 @@ export function SiteHeader() {
             Топ-10
           </NavLink>
         </nav>
+        <div>{user?.login}</div>
       </div>
-      <div>{user?.name}</div>
+      
     </header>
   );
 }

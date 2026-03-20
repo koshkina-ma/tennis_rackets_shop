@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 export const getUser = async (): Promise<ServerResponse<User | undefined>> => {
   const cookieStore = await cookies();
 
-  const result = await fetch(`${BASE_API_URL}/api/auth/user`, {
+  const result = await fetch(`${BASE_API_URL}/auth/user`, {
     credentials: "include",
     headers: {
       Cookie: cookieStore.toString(),
