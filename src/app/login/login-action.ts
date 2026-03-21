@@ -20,7 +20,7 @@ export const loginAction = async (_: LoginState, formData: FormData) => {
   });
 
   if (result.status !== 200) {
-    return { error: "invalid login or password" };
+    return { error: "Неверный логин или пароль" };
   }
 
   const cookiesStore = await cookies();
