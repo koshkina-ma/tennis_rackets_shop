@@ -10,6 +10,7 @@ const Login = () => { //TODO удалила props, так как была оши
     FormData
   >(loginAction, {
     error: "",
+    redirectTo: "",
   });
 
   useEffect(() => {
@@ -34,5 +35,6 @@ const Login = () => { //TODO удалила props, так как была оши
     </form>
   );
 };
+
 
 export default Login;
