@@ -4,6 +4,7 @@ import { useActionState, useEffect } from "react";
 import Link from "next/link";
 import { loginAction } from "./login-action";
 import { LoginState } from "@/types/login";
+import { Spinner } from "@/components/spinner/spinner";
 import styles from "./page.module.css";
 
 const Login = () => {
@@ -21,6 +22,8 @@ const Login = () => {
     }
   }, [redirectTo]);
 
+  const isBusy = isPending || Boolean(redirectTo);
+
   return (
     <div className={styles.authWrap}>
       <div className={styles.authCard}>
@@ -28,7 +31,11 @@ const Login = () => {
         <p className={styles.authSubtitle}>
           Введите логин и пароль, чтобы продолжить.
         </p>
-        <form className={styles.form} action={formAction}>
+        <form
+          className={styles.form}
+          action={formAction}
+          aria-busy={isBusy}
+        >
           <div className={styles.field}>
             <label className={styles.label} htmlFor="login">
               Логин
@@ -40,6 +47,7 @@ const Login = () => {
               type="text"
               autoComplete="username"
               required
+              disabled={isBusy}
             />
           </div>
 
@@ -54,16 +62,35 @@ const Login = () => {
               type="password"
               autoComplete="current-password"
               required
+              disabled={isBusy}
             />
           </div>
           {error ? <p className={styles.error}>{error}</p> : null}
-          <button className={styles.submit} type="submit" disabled={isPending}>
-            {isPending ? "Вход…" : "Войти"}
+          <button className={styles.submit} type="submit" disabled={isBusy}>
+            {isPending ? (
+              <>
+                <Spinner variant="onDark" />
+                Вход…
+              </>
+            ) : redirectTo ? (
+              <>
+                <Spinner variant="onDark" />
+                Переход…
+              </>
+            ) : (
+              "Войти"
+            )}
           </button>
         </form>
         <p className={styles.footer}>
           Нет аккаунта?{" "}
-          <Link className={styles.footerLink} href="/sign-up">
+          <Link
+            className={styles.footerLink}
+            href="/sign-up"
+            tabIndex={isBusy ? -1 : undefined}
+            aria-disabled={isBusy}
+            data-disabled={isBusy ? "" : undefined}
+          >
             Зарегистрироваться
           </Link>
         </p>

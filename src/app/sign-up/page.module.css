@@ -97,6 +97,10 @@
 
 .submit {
   margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   padding: 12px 16px;
   font-size: 15px;
   font-weight: 600;
@@ -134,4 +138,11 @@
 
 .footerLink:hover {
   text-decoration: underline;
+}
+
+.footerLink[data-disabled] {
+  pointer-events: none;
+  opacity: 0.45;
+  cursor: default;
+  text-decoration: none;
 }

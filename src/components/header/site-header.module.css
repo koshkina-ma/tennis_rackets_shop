@@ -17,6 +17,11 @@
   letter-spacing: 1px;
   color: #374151;
   text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.logo:hover {
+  color: #9ca3af;
 }
 
 .nav {
@@ -28,10 +33,19 @@
 .navLink {
   color: #374151;
   text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.navLink:hover {
+  color: #9ca3af;
 }
 
 .navLinkActive {
   color: #f59e0b;
   text-decoration: none;
+}
+
+.navLinkActive:hover {
+  color: #fbbf24;
 }
 

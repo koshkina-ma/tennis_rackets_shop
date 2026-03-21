@@ -30,7 +30,7 @@ export const UserSection: FC<Props> = ({ className }) => {
           <span className={styles.userName}>{user.login}</span>
           <button
             type="button"
-            className={styles.logoutBtn}
+            className={styles.logout}
             disabled={isPending}
             onClick={() => startTransition(() => void logout())}
           >
