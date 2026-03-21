@@ -1,22 +1,14 @@
- "use client";
+"use client";
 
 import Link from "next/link";
 import styles from "./site-header.module.css";
 import NavLink from "../navlink/nav-link";
-import { use } from "react";
-import { UserContext } from "@/app/providers/user-provider";
+import { UserSection } from "../user-sections/user-sections";
 
 export function SiteHeader() {
-
-  const { user } = use(UserContext);
-
-  console.log("header user");
-  console.log(user);
-
   return (
     <header className={styles.siteHeader}>
       <div className={styles.headerInner}>
-        <div />
         <Link href="/" className={styles.logo}>
           TENNIS STORE
         </Link>
@@ -31,9 +23,8 @@ export function SiteHeader() {
             Топ-10
           </NavLink>
         </nav>
-        <div>{user?.login}</div>
+        <UserSection />
       </div>
-      
     </header>
   );
 }

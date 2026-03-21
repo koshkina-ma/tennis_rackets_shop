@@ -1,44 +1,50 @@
 "use client";
 
-import { UserContext } from "@/providers/user";
-import { FC, use, useTransition } from "react";
-import { Link } from "../link/link";
 import { BASE_API_URL } from "@/constants/api";
-import classNames from "classnames";
+import { UserContext } from "@/app/providers/user-provider";
+import Link from "next/link";
+import { FC, use, useTransition } from "react";
+import styles from "./user-sections.module.css";
 
-const handleLogout = async () => {
+const logout = async () => {
   await fetch(`${BASE_API_URL}/auth/logout`, {
     credentials: "include",
     method: "DELETE",
   });
-
   location.assign("/");
 };
 
-import styles from "./user-section.module.css";
-
-interface Props {
-  className: string;
-}
+type Props = {
+  className?: string;
+};
 
 export const UserSection: FC<Props> = ({ className }) => {
-  const { isAuthorized } = use(UserContext);
-
+  const { user } = use(UserContext);
   const [isPending, startTransition] = useTransition();
+  const isAuthorized = user !== undefined;
 
   return (
-    <div className={classNames(className, styles.root)}>
+    <div className={[styles.root, className].filter(Boolean).join(" ")}>
       {isAuthorized ? (
-        <button
-          disabled={isPending}
-          onClick={() => startTransition(handleLogout)}
-        >
-          Logout
-        </button>
+        <>
+          <span className={styles.userName}>{user.login}</span>
+          <button
+            type="button"
+            className={styles.logoutBtn}
+            disabled={isPending}
+            onClick={() => startTransition(() => void logout())}
+          >
+            {isPending ? "…" : "Выйти"}
+          </button>
+        </>
       ) : (
         <>
-          <Link href='/login'>Login</Link>
-          <Link href='/sign-up'>Sign Up</Link>
+          <Link className={styles.link} href="/login">
+            Войти
+          </Link>
+          <Link className={styles.link} href="/sign-up">
+            Регистрация
+          </Link>
         </>
       )}
     </div>
