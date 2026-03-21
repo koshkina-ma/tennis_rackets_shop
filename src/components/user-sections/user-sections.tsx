@@ -37,7 +37,7 @@ export const UserSection: FC<Props> = ({ className }) => {
         </button>
       ) : (
         <>
-          <Link href='/sign-in'>Login</Link>
+          <Link href='/login'>Login</Link>
           <Link href='/sign-up'>Sign Up</Link>
         </>
       )}
