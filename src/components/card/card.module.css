@@ -8,9 +8,17 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+}
+
+.cardLink {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  display: block;
+}
+
+.card:hover {
+  border-color: #dbe3ee;
 }
 
 .cardMedia {
@@ -73,6 +81,8 @@
   justify-content: center;
 }
 
-.card:hover {
-  border-color: #dbe3ee;
+.favoriteRow {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
 }

@@ -17,7 +17,13 @@ const RacketsGrid: FC<Props> = ({ rackets, title }) => {
       )}
       <div className={styles.grid}>
         {rackets.map((r) => (
-          <Card key={r.id} id={r.id} name={r.name} imageUrl={r.imageUrl} />
+          <Card
+            key={r.id}
+            id={r.id}
+            name={r.name}
+            imageUrl={r.imageUrl}
+            isFavorite={r.userData?.isFavorite}
+          />
         ))}
       </div>
     </>
