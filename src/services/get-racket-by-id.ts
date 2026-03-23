@@ -1,6 +1,7 @@
 import { BASE_API_URL } from "@/constants/api";
 import { RacketType } from "@/types/racket";
 import { ServerResponse } from "@/types/api";
+import { cookies } from "next/headers";
 
 type Params = {
   id: string;
@@ -15,9 +16,10 @@ export const getRacketById = async (
   };
 
   try {
+    const cookieStore = await cookies();
     const response = await fetch(
       `${BASE_API_URL}/product/${id}`,
-      { cache: "no-store" },
+      { cache: "no-store", headers: { Cookie: cookieStore.toString() }   },
     );
 
     if (response.status === 404) {

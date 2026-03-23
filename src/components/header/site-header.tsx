@@ -1,14 +1,14 @@
- "use client";
+"use client";
 
 import Link from "next/link";
 import styles from "./site-header.module.css";
 import NavLink from "../navlink/nav-link";
+import { UserSection } from "../user-sections/user-sections";
 
 export function SiteHeader() {
   return (
     <header className={styles.siteHeader}>
       <div className={styles.headerInner}>
-        <div />
         <Link href="/" className={styles.logo}>
           TENNIS STORE
         </Link>
@@ -23,6 +23,7 @@ export function SiteHeader() {
             Топ-10
           </NavLink>
         </nav>
+        <UserSection />
       </div>
     </header>
   );

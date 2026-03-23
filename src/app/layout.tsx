@@ -1,5 +1,4 @@
 import { FC } from "react";
-import Layout from "@/components/layout/layout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,7 +14,7 @@ const RootLayout: FC<
   return (
     <html lang="en">
       <body>
-        <Layout>{children}</Layout>
+        {children}
       </body>
     </html>
   );

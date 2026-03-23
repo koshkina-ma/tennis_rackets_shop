@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import Image from "next/image";
+import { ToggleFavoriteButton } from "@/components/favorite-button/favorite-button";
 import styles from "./racket.module.css";
 import type { RacketType } from "../../types/racket";
 
@@ -15,6 +16,7 @@ export const RacketDetails: FC<Props> = ({ racket }) => {
       <div className={styles.info}>
         <div className={styles.brand}>{brand?.name}</div>
         <div className={styles.name}>{name}</div>
+        <ToggleFavoriteButton />
         <div className={styles.description}>{description}</div>
 
         <div className={styles.meta}>

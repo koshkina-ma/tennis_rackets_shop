@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Carousel } from "@/components/carousel/carousel";
 import pageStyles from "@/components/layout/page.module.css";
 import { getTop10 } from "@/services/get-top10";
-import homeStyles from "./page.module.css";
+import homeStyles from "../page.module.css";
 
 export async function Top10Section() {
   const top10Data = await getTop10();
