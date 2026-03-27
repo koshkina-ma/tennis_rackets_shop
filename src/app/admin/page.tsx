@@ -1,7 +1,7 @@
 "use client";
 
 import { use } from "react";
-import { UserContext } from "../providers/user-provider";
+import { UserContext } from "../providers/user";
 import { redirect } from "next/navigation";
 
 const Admin = () => {

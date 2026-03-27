@@ -1,7 +1,8 @@
 import { getUser } from "@/services/get-user";
-import { UserProvider } from "../providers/user-provider";
+import { UserProvider } from "../providers/user";
 import { FC, PropsWithChildren } from "react";
 import Layout from "@/components/layout/layout";
+import { FavoriteProvider } from "../providers/favorite";
 
 const AppLayout: FC<PropsWithChildren> = async ({ children }) => {
   const { data } = await getUser();
@@ -11,7 +12,9 @@ const AppLayout: FC<PropsWithChildren> = async ({ children }) => {
 
   return (
     <UserProvider user={data}>
-      <Layout>{children}</Layout>
+      <FavoriteProvider>
+        <Layout>{children}</Layout>
+      </FavoriteProvider>
     </UserProvider>
   );
 };
