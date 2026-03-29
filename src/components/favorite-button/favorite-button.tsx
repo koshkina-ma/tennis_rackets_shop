@@ -2,12 +2,13 @@
 
 import { UserContext } from "@/app/providers/user";
 import { BASE_API_URL } from "@/constants/api";
-import { useSetIsFavorite } from "@/providers/favorite/hooks";
+import { useSetIsFavorite } from "@/app/providers/favorite/hooks";
+import type { RacketType } from "@/types/racket";
 import { use, useCallback } from "react";
 
 type Props = {
   isFavorite: boolean;
-  productId: number;
+  productId: RacketType["id"];
 };
 
 const handleFavorite = async ({ isFavorite, productId }: Props): Promise<Response> => {
@@ -24,7 +25,10 @@ const handleFavorite = async ({ isFavorite, productId }: Props): Promise<Respons
       });
 };
 
-export const ToggleFavoriteButton = ({ isFavorite, productId }: Props) => {
+export const ToggleFavoriteButton = ({ 
+  isFavorite: isFavoriteInitial,
+  productId,
+ }: Props) => {
   const { user } = use(UserContext);
   const setFavorite = useSetIsFavorite();
 
@@ -46,3 +50,5 @@ export const ToggleFavoriteButton = ({ isFavorite, productId }: Props) => {
     </button>
   );
 };
+//TODO наверное нужно посмотреть сначала все его видео, а потом вносить правки, потому что он рассказывает
+//про два способа обработки событий, и я похоже перемешала оба этих подхода.

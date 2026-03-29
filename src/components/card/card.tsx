@@ -6,23 +6,27 @@ import { useState } from "react";
 import styles from "./card.module.css";
 import type { FC } from "react";
 import { ToggleFavoriteButton } from "../favorite-button/favorite-button";
+import { useHydrateFavorite, useIsFavoriteById } from "@/app/providers/favorite/hooks";
+import type { RacketType } from "@/types/racket";
 
 type Props = {
-  id: number | string;
-  name: string;
-  imageUrl: string;
-  isFavorite?: boolean;
+  racket: RacketType;
   className?: string;
 };
 
-const Card: FC<Props> = ({
-  id,
-  name,
-  imageUrl,
-  isFavorite,
-  className = "",
-}) => {
+const Card: FC<Props> = ({ racket, className = "" }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const { id, name, imageUrl, userData } = racket;
+
+  useHydrateFavorite({
+    racketId: id,
+    isFavorite: Boolean(userData?.isFavorite),
+  });
+
+  const isFavoriteGlobal = useIsFavoriteById({
+    id,
+    isFavoriteInitial: Boolean(userData?.isFavorite),
+  });
 
   return (
     <div className={`${styles.card} ${className}`.trim()}>
@@ -44,7 +48,7 @@ const Card: FC<Props> = ({
         <div className={styles.cardTitle}>{name}</div>
       </Link>
       <div className={styles.favoriteRow}>
-        <ToggleFavoriteButton isFavorite={isFavorite} />
+        <ToggleFavoriteButton productId={id} isFavorite={isFavoriteGlobal} />
       </div>
     </div>
   );
