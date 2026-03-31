@@ -5,6 +5,7 @@
   border-radius: 8px;
   padding: 12px;
   background: #ffffff;
+  position: relative;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -85,4 +86,23 @@
   margin-top: 10px;
   display: flex;
   justify-content: center;
+}
+
+.favoriteBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.92);
+  color: #eb2525;
+  pointer-events: none;
+}
+
+.favoriteBadgeIcon {
+  width: 40px;
+  height: 40px;
 }

@@ -1,28 +1,14 @@
 "use client";
 
 import { UserContext } from "@/app/providers/user";
-import { BASE_API_URL } from "@/constants/api";
 import { useSetIsFavorite } from "@/app/providers/favorite/hooks";
 import type { RacketType } from "@/types/racket";
 import { use, useCallback } from "react";
+import { handleFavorite } from "./handle-favorite";
 
 type Props = {
   isFavorite: boolean;
   productId: RacketType["id"];
-};
-
-const handleFavorite = async ({ isFavorite, productId }: Props): Promise<Response> => {
-  const url = `${BASE_API_URL}/product/${productId}/favorite`;
-
-  return isFavorite
-    ? fetch(url, {
-        credentials: "include",
-        method: "DELETE",
-      })
-    : fetch(url, {
-        credentials: "include",
-        method: "POST",
-      });
 };
 
 export const ToggleFavoriteButton = ({ 
@@ -49,7 +35,7 @@ export const ToggleFavoriteButton = ({
       type="button"
       onClick={() => handleClick({ isFavorite: isFavoriteInitial, productId })}
     >
-      {isFavoriteInitial ? "В избранном" : "Добавить в избранное"}
+      {isFavoriteInitial ? "В избранном / Удалить" : "Добавить в избранное"}
     </button>
   );
 };

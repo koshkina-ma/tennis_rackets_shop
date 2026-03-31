@@ -30,6 +30,18 @@ const Card: FC<Props> = ({ racket, className = "" }) => {
 
   return (
     <div className={`${styles.card} ${className}`.trim()}>
+      {isFavoriteGlobal && (
+        <div className={styles.favoriteBadge} role="img" aria-label="В избранном">
+          <svg
+            className={styles.favoriteBadgeIcon}
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M6 2h12a2 2 0 0 1 2 2v18l-8-5-8 5V4a2 2 0 0 1 2-2z" />
+          </svg>
+        </div>
+      )}
       <Link href={`/racket/${id}`} className={styles.cardLink}>
         <div className={styles.cardMedia}>
           {!isImageLoaded && (
