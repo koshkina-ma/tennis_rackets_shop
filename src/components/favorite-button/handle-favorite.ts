@@ -28,5 +28,5 @@ export const handleFavorite = async ({ isFavorite, productId }: Params) => {
         method: "POST",
       }));
 
-  revalidateTag("getRackets");
+  revalidateTag("getRackets", "page");
 };

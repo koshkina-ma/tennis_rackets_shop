@@ -45,10 +45,12 @@ export const ToggleFavoriteButton = ({
   }
 
   return (
-    <button type="button" onClick={() => handleClick({ isFavorite, productId })}>
-      {isFavorite ? "В избранном" : "Добавить в избранное"}
+    <button
+      type="button"
+      onClick={() => handleClick({ isFavorite: isFavoriteInitial, productId })}
+    >
+      {isFavoriteInitial ? "В избранном" : "Добавить в избранное"}
     </button>
   );
 };
-//TODO наверное нужно посмотреть сначала все его видео, а потом вносить правки, потому что он рассказывает
-//про два способа обработки событий, и я похоже перемешала оба этих подхода.
+
