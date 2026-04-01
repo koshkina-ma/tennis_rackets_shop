@@ -1,14 +1,42 @@
 "use client";
 
-import { UserContext } from "@/app/providers/user-provider";
-import { use } from "react";
+import { UserContext } from "@/app/providers/user";
+import { useSetIsFavorite } from "@/app/providers/favorite/hooks";
+import type { RacketType } from "@/types/racket";
+import { use, useCallback } from "react";
+import { handleFavorite } from "./handle-favorite";
 
-export const ToggleFavoriteButton = () => {
+type Props = {
+  isFavorite: boolean;
+  productId: RacketType["id"];
+};
+
+export const ToggleFavoriteButton = ({ 
+  isFavorite: isFavoriteInitial,
+  productId,
+ }: Props) => {
   const { user } = use(UserContext);
+  const setFavorite = useSetIsFavorite();
+
+  const handleClick = useCallback(
+    async ({ isFavorite, productId }: Props): Promise<void> => {
+      setFavorite({ id: productId, isFavorite: !isFavorite });
+      await handleFavorite({ isFavorite, productId });
+    },
+    [setFavorite]
+  );
 
   if (user === undefined) {
     return null;
   }
 
-  return <button type="button">Добавить в избранное</button>;
+  return (
+    <button
+      type="button"
+      onClick={() => handleClick({ isFavorite: isFavoriteInitial, productId })}
+    >
+      {isFavoriteInitial ? "В избранном / Удалить" : "Добавить в избранное"}
+    </button>
+  );
 };
+

@@ -16,7 +16,7 @@ export const RacketDetails: FC<Props> = ({ racket }) => {
       <div className={styles.info}>
         <div className={styles.brand}>{brand?.name}</div>
         <div className={styles.name}>{name}</div>
-        <ToggleFavoriteButton />
+        <ToggleFavoriteButton isFavorite={racket.userData?.isFavorite} />
         <div className={styles.description}>{description}</div>
 
         <div className={styles.meta}>

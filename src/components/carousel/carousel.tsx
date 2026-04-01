@@ -1,14 +1,12 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import styles from "./carousel.module.css";
 import cardStyles from "../card/card.module.css";
 import Card from "../card/card";
 import type { RacketType } from "../../types/racket";
 
-type CarouselItem = Pick<RacketType, "id" | "name" | "imageUrl">;
-
-export function Carousel({ items }: { items: CarouselItem[] }) {
+export function Carousel({ items }: { items: RacketType[] }) {
   const trackRef = useRef<HTMLDivElement | null>(null);
 
   const scrollByWidth = (dir: "left" | "right") => {
@@ -31,7 +29,7 @@ export function Carousel({ items }: { items: CarouselItem[] }) {
       <div className={styles.carouselTrack} ref={trackRef}>
         {items.map((r) => (
           <div key={r.id} className={styles.carouselItem}>
-            <Card id={r.id} name={r.name} imageUrl={r.imageUrl} className={cardStyles.card} />
+            <Card racket={r} className={cardStyles.card} />
           </div>
         ))}
       </div>

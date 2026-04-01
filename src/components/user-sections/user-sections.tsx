@@ -1,7 +1,7 @@
 "use client";
 
 import { BASE_API_URL } from "@/constants/api";
-import { UserContext } from "@/app/providers/user-provider";
+import { UserContext } from "@/app/providers/user";
 import Link from "next/link";
 import { FC, use, useTransition } from "react";
 import styles from "./user-sections.module.css";
