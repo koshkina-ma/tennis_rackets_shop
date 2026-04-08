@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "http://localhost:4000/api/:path*",
+      },
+    ];
+  },
   images: {
     // Временно отключаем оптимизацию, чтобы быстро продолжать верстку,
     // даже если встроенный оптимизатор /_next/image не может получить картинки с :4000.

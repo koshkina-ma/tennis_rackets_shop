@@ -19,6 +19,19 @@ const getPageFromLocation = (): number => {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
 };
 
+const getBrandFromLocation = (): string | null => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  const raw = new URLSearchParams(window.location.search).get("brand");
+  if (raw == null || raw.trim() === "") {
+    return null;
+  }
+
+  return raw;
+};
+
 const fetcher = async (path: string, init?: RequestInit): Promise<RacketType[]> => {
   const response = await fetch(`${BASE_API_URL}/${path}`, {
     credentials: "include",
@@ -38,24 +51,39 @@ const fetcher = async (path: string, init?: RequestInit): Promise<RacketType[]> 
 
 export function RacketsContainer() {
   const [page, setPage] = useState<number>(1);
+  const [brand, setBrand] = useState<string | null>(null);
   const [totalPages, setTotalPages] = useState<number | null>(null);
   const [isDiscoveringPages, setIsDiscoveringPages] = useState<boolean>(false);
   const { mutate } = useSWRConfig();
 
   useEffect(() => {
     setPage(getPageFromLocation());
+    setBrand(getBrandFromLocation());
   }, []);
 
   useEffect(() => {
     const onPopState = () => {
       setPage(getPageFromLocation());
+      setBrand(getBrandFromLocation());
     };
 
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
-  const key = useMemo(() => `products?page=${page}&limit=${LIMIT}`, [page]);
+  useEffect(() => {
+    setTotalPages(null);
+  }, [brand]);
+
+  const key = useMemo(() => {
+    const params = new URLSearchParams();
+    params.set("page", String(page));
+    params.set("limit", String(LIMIT));
+    if (brand != null) {
+      params.set("brand", brand);
+    }
+    return `products?${params.toString()}`;
+  }, [brand, page]);
 
   const { data, error, isLoading, isValidating } = useSWR<RacketType[]>(
     key,
@@ -82,9 +110,14 @@ export function RacketsContainer() {
 
       try {
         let p = 1;
-        // eslint-disable-next-line no-constant-condition
         while (true) {
-          const probeKey = `products?page=${p}&limit=${LIMIT}`;
+          const params = new URLSearchParams();
+          params.set("page", String(p));
+          params.set("limit", String(LIMIT));
+          if (brand != null) {
+            params.set("brand", brand);
+          }
+          const probeKey = `products?${params.toString()}`;
           const items = await fetcher(probeKey, { signal: controller.signal });
 
           mutate(probeKey, items, false);
@@ -108,13 +141,12 @@ export function RacketsContainer() {
     return () => {
       controller.abort();
     };
-  }, [mutate, totalPages]);
+  }, [brand, mutate, totalPages]);
 
   useEffect(() => {
     if (totalPages != null && page > totalPages) {
       updatePage(totalPages);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, totalPages]);
 
   const updatePage = (nextPage: number) => {

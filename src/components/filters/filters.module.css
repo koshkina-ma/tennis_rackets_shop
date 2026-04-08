@@ -26,3 +26,16 @@
   list-style-position: inside;
 }
 
+.filterButton {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.filterButtonActive {
+  font-weight: 700;
+}
+
