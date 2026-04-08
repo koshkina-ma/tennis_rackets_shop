@@ -1,9 +1,8 @@
 import { Filters } from "@/components/filters/filters";
-import RacketsGrid from "@/components/rackets-grid/rackets-grid";
 import pageStyles from "@/components/layout/page.module.css";
-import { getRackets } from "@/services/get-rackets";
 import styles from "./rackets.module.css";
 import { Metadata } from "next";
+import { RacketsContainer } from "./rackets-container.client";
 
 export const metadata: Metadata = {
   title: "Rackets | Tennis Rackets Shop",
@@ -11,12 +10,6 @@ export const metadata: Metadata = {
 };
 
 export default async function RacketsPage() {
-  const { isError, data } = await getRackets();
-
-  if (isError) {
-    throw new Error("Ошибка загрузки ракеток");
-  }
-
   return (
     <main className={pageStyles.main}>
       <section className={pageStyles.section}>
@@ -26,7 +19,7 @@ export default async function RacketsPage() {
           </aside>
 
           <div className={styles.racketsList}>
-            <RacketsGrid rackets={data} title="Ракетки" />
+            <RacketsContainer />
           </div>
         </div>
       </section>

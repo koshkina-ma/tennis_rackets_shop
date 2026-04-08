@@ -26,6 +26,7 @@
 .paginationList {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -39,6 +40,12 @@
   color: #374151;
   text-decoration: none;
   border: 1px solid transparent;
+  background: transparent;
+  font: inherit;
+  line-height: 1.2;
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
 }
 
 .pageLinkActive {
