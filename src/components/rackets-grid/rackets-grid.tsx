@@ -7,9 +7,10 @@ import styles from "./rackets-grid.module.css";
 type Props = {
   rackets: RacketType[];
   title?: string;
+  showFavorite?: boolean;
 };
 
-const RacketsGrid: FC<Props> = ({ rackets, title }) => {
+const RacketsGrid: FC<Props> = ({ rackets, title, showFavorite = true }) => {
   return (
     <>
       {title != null && (
@@ -17,7 +18,7 @@ const RacketsGrid: FC<Props> = ({ rackets, title }) => {
       )}
       <div className={styles.grid}>
         {rackets.map((r) => (
-          <Card key={r.id} racket={r} />
+          <Card key={r.id} racket={r} showFavorite={showFavorite} />
         ))}
       </div>
     </>

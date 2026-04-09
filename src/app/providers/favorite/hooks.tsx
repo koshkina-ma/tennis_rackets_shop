@@ -15,16 +15,17 @@ export const useHydrateFavorite = ({
   racketId: RacketType["id"];
   isFavorite?: boolean;
 }) => {
-  const setIsFavorite = useSetIsFavorite();
+  const { favorites, setFavorite: setIsFavorite } = use(FavoriteContext);
 
   useEffect(() => {
-    if (typeof isFavorite === "boolean") {
+    console.log('hydrate', racketId, isFavorite, 'in favorites:', racketId in favorites);
+    if (typeof isFavorite === "boolean" && !(racketId in favorites)) {
       setIsFavorite({
         isFavorite: isFavorite,
         id: racketId,
       });
     }
-  }, [racketId, isFavorite, setIsFavorite]);
+  }, [racketId, isFavorite, setIsFavorite, favorites]);
 };
 
 export const useIsFavoriteById = ({
@@ -36,9 +37,6 @@ export const useIsFavoriteById = ({
 }): boolean => {
   const { favorites } = use(FavoriteContext);
   const isFavoriteGlobal = favorites[id] ?? null;
-
-  //   console.log("isFavoriteGlobal");
-  //   console.log(isFavoriteGlobal);
 
   const isFavorite = isFavoriteGlobal ?? isFavoriteInitial;
 

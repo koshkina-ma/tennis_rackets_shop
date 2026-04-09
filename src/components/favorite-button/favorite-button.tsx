@@ -12,18 +12,18 @@ type Props = {
 };
 
 export const ToggleFavoriteButton = ({ 
-  isFavorite: isFavoriteInitial,
+  isFavorite,
   productId,
  }: Props) => {
   const { user } = use(UserContext);
   const setFavorite = useSetIsFavorite();
 
   const handleClick = useCallback(
-    async ({ isFavorite, productId }: Props): Promise<void> => {
+    async (): Promise<void> => {
       setFavorite({ id: productId, isFavorite: !isFavorite });
       await handleFavorite({ isFavorite, productId });
     },
-    [setFavorite]
+    [setFavorite, isFavorite, productId]
   );
 
   if (user === undefined) {
@@ -33,9 +33,9 @@ export const ToggleFavoriteButton = ({
   return (
     <button
       type="button"
-      onClick={() => handleClick({ isFavorite: isFavoriteInitial, productId })}
+      onClick={handleClick}
     >
-      {isFavoriteInitial ? "В избранном / Удалить" : "Добавить в избранное"}
+      {isFavorite ? "В избранном / Удалить" : "Добавить в избранное"}
     </button>
   );
 };

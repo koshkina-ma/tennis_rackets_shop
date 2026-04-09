@@ -28,6 +28,20 @@
   font-weight: 700;
   margin-bottom: 12px;
 }
+
+.favoriteInline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  color: #eb2525;
+  vertical-align: middle;
+}
+
+.favoriteInlineIcon {
+  width: 20px;
+  height: 20px;
+}
 .description {
   color: #4b5563;
   line-height: 1.6;

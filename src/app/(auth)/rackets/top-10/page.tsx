@@ -18,7 +18,7 @@ export default async function Top10Page() {
   return (
     <main className={pageStyles.main}>
       <section className={pageStyles.section}>
-        <RacketsGrid rackets={data} title="Топ-10" />
+        <RacketsGrid rackets={data} title="Топ-10" showFavorite={false} />
       </section>
     </main>
   );
