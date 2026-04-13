@@ -3,9 +3,17 @@ import { RacketType } from "@/types/racket";
 import { ServerResponse } from "@/types/api";
 import { cookies } from "next/headers";
 
+type GetRacketsParams = {
+  page?: number;
+  limit?: number;
+}
 
 
-export const getRackets = async (): Promise<ServerResponse<RacketType[]>> => {
+export const getRackets = async ({
+  page = 1,
+  limit = 20,
+}: GetRacketsParams = {}): Promise<ServerResponse<RacketType[]>> => {
+
 
   const cookieStore = await cookies();
 
@@ -13,9 +21,6 @@ export const getRackets = async (): Promise<ServerResponse<RacketType[]>> => {
     isError: true,
     data: []
   };
-
-  const page = 1;
-  const limit = 20;//TODO вынести в константы, как буду настраивать пагинацию
 
   try {
     const response = await fetch(`${BASE_API_URL}/products?page=${page}&limit=${limit}`, {

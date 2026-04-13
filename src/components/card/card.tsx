@@ -12,25 +12,26 @@ import type { RacketType } from "@/types/racket";
 type Props = {
   racket: RacketType;
   className?: string;
+  showFavorite?: boolean;
 };
 
-const Card: FC<Props> = ({ racket, className = "" }) => {
+const Card: FC<Props> = ({ racket, className = "", showFavorite = true }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const { id, name, imageUrl, userData } = racket;
 
   useHydrateFavorite({
     racketId: id,
-    isFavorite: Boolean(userData?.isFavorite),
+    isFavorite: showFavorite ? userData?.isFavorite : undefined,
   });
 
   const isFavoriteGlobal = useIsFavoriteById({
     id,
-    isFavoriteInitial: Boolean(userData?.isFavorite),
+    isFavoriteInitial: showFavorite ? Boolean(userData?.isFavorite) : undefined,
   });
 
   return (
     <div className={`${styles.card} ${className}`.trim()}>
-      {isFavoriteGlobal && (
+      {showFavorite && isFavoriteGlobal && (
         <div className={styles.favoriteBadge} role="img" aria-label="В избранном">
           <svg
             className={styles.favoriteBadgeIcon}
@@ -59,9 +60,11 @@ const Card: FC<Props> = ({ racket, className = "" }) => {
         </div>
         <div className={styles.cardTitle}>{name}</div>
       </Link>
-      <div className={styles.favoriteRow}>
-        <ToggleFavoriteButton productId={id} isFavorite={isFavoriteGlobal} />
-      </div>
+      {showFavorite && (
+        <div className={styles.favoriteRow}>
+          <ToggleFavoriteButton productId={id} isFavorite={isFavoriteGlobal} />
+        </div>
+      )}
     </div>
   );
 };
