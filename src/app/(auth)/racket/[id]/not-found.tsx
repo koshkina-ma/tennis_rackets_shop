@@ -4,7 +4,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Not Found | Tennis Rackets Shop",
   description: "Racket not found page",
-}; //TODO эта метадата не работает
+}; 
 
 export default function NotFound() {
   return (

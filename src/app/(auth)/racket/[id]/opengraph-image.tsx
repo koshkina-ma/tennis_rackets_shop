@@ -14,7 +14,7 @@ type Props = {
   params: Promise<{ racketId: string }>;
 };
 
-const Image: FC<{
+const OgImage: FC<{
   racket: RacketType;
 }> = ({ racket }) => {
   return (
@@ -29,7 +29,7 @@ const Image: FC<{
   );
 };
 
-const OGImage = async ({ params }: Props) => {
+const generateOgImage = async ({ params }: Props) => {
   const { racketId } = await params;
   const { data } = await getRacketOgDataById({ id: racketId });
 
@@ -37,11 +37,10 @@ const OGImage = async ({ params }: Props) => {
     return null;
   }
 
-  return new ImageResponse(<Image racket={data} />, {
+  return new ImageResponse(<OgImage racket={data} />, {
     ...size,
   });
 };
 
-export default OGImage;
+export default generateOgImage;
 
-//TODO какие-то проблемы с img
