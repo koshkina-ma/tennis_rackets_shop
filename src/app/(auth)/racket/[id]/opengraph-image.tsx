@@ -43,3 +43,5 @@ const OGImage = async ({ params }: Props) => {
 };
 
 export default OGImage;
+
+//TODO какие-то проблемы с img
